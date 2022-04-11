@@ -3,12 +3,19 @@ import SongDetails from './SongDetails';
 import SongForm from './SongForm';
 import Loader from './Loader';
 import { helpHttp } from '../helpers/helpHttp';
+import { HashRouter, Link, Routes, Route } from 'react-router-dom';
+import SongTable from './SongTable';
+import SongPage from '../pages/SongPage';
+import { GrFavorite, GrHome } from "react-icons/gr";
+
+let mySongsInit = JSON.parse(localStorage.getItem("mySongs" )) || [];
 
 const SongSearch = () => {
     const [search, setSearch] = useState(null);
     const [lyric, setLyric] = useState(null);
     const [bio, setBio] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [mySongs, setMySongs] = useState(mySongsInit);
 
     const handleSearch = (data) => {
         setSearch(data);
@@ -35,23 +42,61 @@ const SongSearch = () => {
         }
 
         fetchData();
-    }, [search]);
+
+        localStorage.setItem("mySongs", JSON.stringify(mySongs));
+    }, [search, mySongs]);
+
+    const handleSaveSong = () => {
+        let currentSong = {
+            search,
+            lyric,
+            bio
+        }
+
+        let songs = [...mySongs, currentSong];
+        setMySongs(songs);
+        setSearch(null);
+        localStorage.setItem("mySongs", JSON.stringify(songs));
+    }
+
+    const handleDeleteSong = (id) => {
+        let isDelete = window.confirm(`¿Estas seguro de eliminar la cancion con el id "${id}?`);     
+
+        if (isDelete){
+            let songs = mySongs.filter((el,index) => index !== id);
+            setMySongs(songs);
+            localStorage.setItem("mySongs", JSON.stringify(songs));
+        }
+    }
 
     return (  
         <div>
-            <article className='grid-1'>
-                <SongForm handleSearch={handleSearch}></SongForm>
+            <header>
+                <Link to="/"><GrHome/></Link>
+                <Link to="/"><GrFavorite/></Link>
+            </header>
+
+            <article className='grid-1-2'>
+                <Routes>
+                    <Route path="/" element={
+                        <>
+                            <SongForm handleSearch={handleSearch} handleSaveSong={handleSaveSong}></SongForm>
+                            <SongTable mySongs={mySongs} handleDeleteSong={handleDeleteSong} />
+                            {search && !loading && (
+                                <SongDetails search={search} lyric={lyric} bio={bio}/>
+                            )}
+                        </>
+                    }/>    
+
+                    <Route path="/canciones/:id" element={<SongPage mySongs={mySongs}/>}/>
+                </Routes>    
             </article>
+
             {loading && 
                 <article className='loader'>
                     <Loader />
                 </article>
             }
-            <article className='grid-1-2'>
-                {search && !loading && (
-                    <SongDetails search={search} lyric={lyric} bio={bio}></SongDetails>
-                    )}
-            </article>
         </div>
     );
 }

@@ -2,23 +2,27 @@ import SongTableRow from "./SongTableRow";
 
 const SongTable = ({mySongs, handleDeleteSong}) => {
     return (  
-        <div>
-            <h3>Mis canciones favoritas</h3>
-            <table>
+        <div className="favoritos">
+            <h3 style={{minHeight:"20px"}}>Mis canciones favoritas</h3>
+            <table style={{minHeight:"140px"}}>
                 <thead>
                     <tr>
                         <th colSpan="2">Artista</th>
-                        <th>Cancion</th>
+                        <th>Canción</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>      
                     {mySongs.length > 0? (
-                        mySongs.map((el,index) => <SongTableRow key={index} el={el} id={index} handleDeleteSong={handleDeleteSong}/>)
+                        mySongs.map((el,index) => 
+                            <SongTableRow key={index} el={el} id={index} handleDeleteSong={handleDeleteSong}/>
+                        )
                     ) : (
-                    <tr>
-                        <td colSpan="4"> Sin canciones favoritas </td>
-                    </tr>)}
+                        <tr>
+                            <td colSpan="4"> Sin canciones favoritas </td>
+                        </tr> 
+                    )
+                    }
                 </tbody>
             </table>
         </div>

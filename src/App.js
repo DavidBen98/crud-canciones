@@ -1,5 +1,6 @@
 import SongSearch from "./components/SongSearch";
 import "./App.css";
+import { HashRouter, Link, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -7,7 +8,9 @@ function App() {
       <h1>
         Buscador de canciones
       </h1>
-      <SongSearch></SongSearch>
+      <HashRouter>
+        <SongSearch></SongSearch>
+      </HashRouter>
     </div>
   );
 }

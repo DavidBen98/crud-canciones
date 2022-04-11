@@ -19,7 +19,13 @@ h1{
     text-align: center;
     color: #B227D7;
     font-family: "roboto";
+}
 
+header{
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+    gap: 2rem;
 }
 
 input[type="text"],
@@ -43,6 +49,7 @@ textarea{
 }
 
 button,
+input[type="button"],
 input[type="reset"],
 input[type="submit"]{
     border: thin solid #444;
@@ -59,8 +66,11 @@ input[type="submit"]{
     font-weight: bold;
     color: #444;
     background-color: #eee;
+    margin-right: 0.5rem;
 }
 
+button:hover,
+input[type="button"]:hover,
 input[type="submit"]:hover{
     background-color: #000;
     color: #fff;
@@ -92,6 +102,18 @@ label{
     cursor: pointer;
 }
 
+table{
+    border-spacing: 0;
+    border-collapse:0.5rem;
+    width: 100%;
+    min-height: 70%;
+}
+
+.favoritos{
+    background-color: #ddd;
+    min-height: 200px;
+}
+
 .loader{
     display: flex;
     justify-content: center;
@@ -102,6 +124,11 @@ label{
     grid-template-columns: 1fr 1fr;
     justify-content: center;
 
+}
+
+a svg{
+    width: 40px;
+    height: 40px;
 }
 
 
