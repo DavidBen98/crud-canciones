@@ -1,0 +1,13 @@
+.fav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.fav section{
+    width: 40%;
+    text-align: center;
+    background-color:#fff;
+    margin:2rem;
+    border-radius: 0.5rem;
+}

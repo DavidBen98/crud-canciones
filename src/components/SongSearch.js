@@ -7,6 +7,7 @@ import { HashRouter, Link, Routes, Route } from 'react-router-dom';
 import SongTable from './SongTable';
 import SongPage from '../pages/SongPage';
 import { GrFavorite, GrHome } from "react-icons/gr";
+import SongFavorite from './SongFavorite';
 
 let mySongsInit = JSON.parse(localStorage.getItem("mySongs" )) || [];
 
@@ -73,8 +74,12 @@ const SongSearch = () => {
         <div>
             <header>
                 <Link to="/"><GrHome/></Link>
-                <Link to="/"><GrFavorite/></Link>
+                <Link to="/canciones"><GrFavorite/></Link>
             </header>
+
+            <Routes>
+                <Route path="/canciones" element={<SongFavorite mySongs={mySongs} handleDeleteSong={handleDeleteSong} />}/>
+            </Routes>
 
             <article className='grid-1-2'>
                 <Routes>
