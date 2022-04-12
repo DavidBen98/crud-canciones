@@ -110,8 +110,9 @@ table{
 }
 
 .favoritos{
-    background-color: #ddd;
+    background-color: #fff;
     min-height: 200px;
+    border-radius: 0.25rem;
 }
 
 .loader{
@@ -123,7 +124,6 @@ table{
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
-
 }
 
 a svg{
