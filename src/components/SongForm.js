@@ -50,7 +50,7 @@ const SongForm = ({handleSearch, handleSaveSong}) => {
                 />
 
                 <input type="submit" value="Enviar" />
-                <input type="button" onClick={handleSaveSong} disabled={isDisabled && "disabled"} value="Guardar canción" />
+                <input type="button" onClick={()=> {handleSaveSong(); setIsDisabled(true);}} disabled={isDisabled} value="Guardar canción" />
             </form>
         </>
     );

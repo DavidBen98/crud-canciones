@@ -8,6 +8,7 @@ import SongTable from './SongTable';
 import SongPage from '../pages/SongPage';
 import { GrFavorite, GrHome } from "react-icons/gr";
 import SongFavorite from './SongFavorite';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 let mySongsInit = JSON.parse(localStorage.getItem("mySongs" )) || [];
 
@@ -44,7 +45,9 @@ const SongSearch = () => {
 
         fetchData();
 
-        localStorage.setItem("mySongs", JSON.stringify(mySongs));
+        if (bio !== null){
+            localStorage.setItem("mySongs", JSON.stringify(mySongs));
+        } 
     }, [search, mySongs]);
 
     const handleSaveSong = () => {
@@ -54,10 +57,27 @@ const SongSearch = () => {
             bio
         }
 
-        let songs = [...mySongs, currentSong];
-        setMySongs(songs);
+        console.log(currentSong);
+
+        let songRepeat = mySongs.find(el => el.search.artist.toLowerCase() === currentSong.search.artist.toLowerCase() 
+            && el.search.song.toLowerCase() === currentSong.search.song.toLowerCase());
+
+        if (songRepeat) {
+            alert("La canción ya está añadida a su lista de favoritos");
+        } else if (currentSong.bio.artists === null){
+            alert("El artista es nulo, reintente por favor");
+        }
+        else if (currentSong.lyric.code === 20 || currentSong.lyric.status === 404){
+            alert("La canción no ha sido encontrada, reintente por favor");
+        }
+        else {
+            let songs = [...mySongs, currentSong];
+            setMySongs(songs);
+            localStorage.setItem("mySongs", JSON.stringify(songs));
+            alert("La canción se ha añadido a su lista de favoritos");
+        }
+
         setSearch(null);
-        localStorage.setItem("mySongs", JSON.stringify(songs));
     }
 
     const handleDeleteSong = (id) => {

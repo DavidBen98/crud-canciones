@@ -8,6 +8,7 @@ function App() {
       <h1>
         Buscador de canciones
       </h1>
+      {/* {localStorage.clear()} */}
       <HashRouter>
         <SongSearch></SongSearch>
       </HashRouter>
