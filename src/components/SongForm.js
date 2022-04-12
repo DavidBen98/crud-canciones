@@ -37,7 +37,7 @@ const SongForm = ({handleSearch, handleSaveSong}) => {
                 <input 
                     type="text" 
                     name="artist" 
-                    placeholder="Nombre del interprete" 
+                    placeholder="Nombre del intérprete" 
                     onChange={handleChange}
                     value={form.artist}
                 />
@@ -45,7 +45,7 @@ const SongForm = ({handleSearch, handleSaveSong}) => {
                 <input 
                     type="text" 
                     name="song" 
-                    placeholder="Nombre de la cancion" 
+                    placeholder="Nombre de la canción" 
                     onChange={handleChange}
                     value={form.song}
                 />

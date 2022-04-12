@@ -63,18 +63,18 @@ const SongSearch = () => {
             && el.search.song.toLowerCase() === currentSong.search.song.toLowerCase());
 
         if (songRepeat) {
-            swal("Atención","La canción ya está añadida a su lista de favoritos","info");
+            swal("Atención","La canción ya está añadida a su lista de favoritos.","info");
         } else if (currentSong.bio.artists === null){
-            swal("Error","El artista es nulo, reintente por favor","error");
+            swal("Error","El artista y/o la cancion es nula, reintente por favor.","error");
         }
         else if (currentSong.lyric.code === 20 || currentSong.lyric.status === 404){
-            swal("Error","La canción no ha sido encontrada, reintente por favor","error");
+            swal("Error","La canción no ha sido encontrada, reintente por favor.","error");
         }
         else {
             let songs = [...mySongs, currentSong];
             setMySongs(songs);
             localStorage.setItem("mySongs", JSON.stringify(songs));
-            swal("Éxito","La canción se ha añadido a su lista de favoritos","success");
+            swal("Éxito","La canción se ha añadido a su lista de favoritos.","success");
         }
 
         setSearch(null);
