@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import swal from 'sweetalert';
 
 const initialForm = {
     artist: "",
@@ -20,7 +21,7 @@ const SongForm = ({handleSearch, handleSaveSong}) => {
         e.preventDefault();
 
         if(!form.artist ||!form.song){
-            alert ("Datos incompletos");
+            swal ("Datos incompletos","Complete todas las casillas por favor","error");
             setIsDisabled(true);
             return;
         }

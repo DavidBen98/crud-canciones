@@ -8,7 +8,7 @@ import SongTable from './SongTable';
 import SongPage from '../pages/SongPage';
 import { GrFavorite, GrHome } from "react-icons/gr";
 import SongFavorite from './SongFavorite';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
+import swal from 'sweetalert';
 
 let mySongsInit = JSON.parse(localStorage.getItem("mySongs" )) || [];
 
@@ -63,31 +63,34 @@ const SongSearch = () => {
             && el.search.song.toLowerCase() === currentSong.search.song.toLowerCase());
 
         if (songRepeat) {
-            alert("La canción ya está añadida a su lista de favoritos");
+            swal("Atención","La canción ya está añadida a su lista de favoritos","info");
         } else if (currentSong.bio.artists === null){
-            alert("El artista es nulo, reintente por favor");
+            swal("Error","El artista es nulo, reintente por favor","error");
         }
         else if (currentSong.lyric.code === 20 || currentSong.lyric.status === 404){
-            alert("La canción no ha sido encontrada, reintente por favor");
+            swal("Error","La canción no ha sido encontrada, reintente por favor","error");
         }
         else {
             let songs = [...mySongs, currentSong];
             setMySongs(songs);
             localStorage.setItem("mySongs", JSON.stringify(songs));
-            alert("La canción se ha añadido a su lista de favoritos");
+            swal("Éxito","La canción se ha añadido a su lista de favoritos","success");
         }
 
         setSearch(null);
     }
 
-    const handleDeleteSong = (id) => {
-        let isDelete = window.confirm(`¿Estas seguro de eliminar la cancion con el id "${id}?`);     
-
-        if (isDelete){
-            let songs = mySongs.filter((el,index) => index !== id);
-            setMySongs(songs);
-            localStorage.setItem("mySongs", JSON.stringify(songs));
-        }
+    const handleDeleteSong = (id, el) => {
+        let song = el.search.artist + " - " + el.search.song;
+        swal(`¿Estas seguro de eliminar la cancion "${song}"?`, {
+            buttons: ["Cancelar", "Sí"]
+        }).then((del) => {
+            if (del){
+                let songs = mySongs.filter((el,index) => index !== id);
+                setMySongs(songs);
+                localStorage.setItem("mySongs", JSON.stringify(songs));
+            }
+        });
     }
 
     return (  

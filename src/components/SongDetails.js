@@ -10,7 +10,7 @@ const SongDetails = ({search, lyric, bio}) => {
         <>
             {lyric.error || lyric. err || lyric.name === "AbortError" ?
             <Message 
-                msg={`Error: no existe la cancion "${search.song}"`}
+                msg={`Error: no existe la canción "${search.song}"`}
                 bgColor="#dc3545"
             /> : <SongLyric title={search.song} lyrics={lyric.lyrics}></SongLyric>}
             {bio.artists? 

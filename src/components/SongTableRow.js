@@ -18,7 +18,7 @@ const SongTableRow = ({id,handleDeleteSong, el}) => {
             <td>{search.song}</td>
             <td>
                 <button onClick={() => navigate(`/canciones/${id}`)}>Ver</button>
-                <button onClick={() => handleDeleteSong(id)}>Eliminar</button>
+                <button onClick={() => handleDeleteSong(id, el)}>Eliminar</button>
             </td>
         </tr>
     );
