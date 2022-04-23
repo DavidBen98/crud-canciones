@@ -11,7 +11,7 @@ const SongTableRow = ({id,handleDeleteSong, el}) => {
     }
     return ( 
         <tr>
-            <td>
+            <td style={{minWidth:"40px"}}>
                 <img src={avatar} style= {avatarStyles} alt={search.artist}/>
             </td>
             <td>{search.artist}</td>

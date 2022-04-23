@@ -3,7 +3,7 @@ import SongTableRow from "./SongTableRow";
 const SongTable = ({mySongs, handleDeleteSong}) => {
     return (  
         <div className="favoritos">
-            <h3 style={{minHeight:"20px"}}>Mis canciones favoritas</h3>
+            <h3 style={{minHeight:"20px", textAlign:"center"}}>Mis canciones favoritas</h3>
             <table style={{minHeight:"140px"}}>
                 <thead>
                     <tr>

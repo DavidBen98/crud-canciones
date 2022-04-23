@@ -5,9 +5,19 @@
 }
 
 .fav section{
-    width: 40%;
+    min-width: 40%;
     text-align: center;
     background-color:#fff;
     margin:2rem;
     border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 700px) {
+    .fav section{
+        min-width: 100%;
+    }
+
+    p{
+        text-align: center;
+    }
 }
