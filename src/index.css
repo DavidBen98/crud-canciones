@@ -6,7 +6,8 @@ html{
 }
 
 body{
-    background-color: #E7A0FA;
+    background-color: rgb(238 210 255);
+    ;
 }
 
 *,
@@ -17,7 +18,7 @@ body{
 
 h1{
     text-align: center;
-    color: #B227D7;
+    color: #E7A0FA;
     font-family: "roboto";
 }
 
@@ -169,12 +170,13 @@ td{
     }
 }
 
-
-
 @media screen and (max-width: 700px) {
     button{
-        margin-right: 0.05rem;
         padding: 0.5rem;
+    }
+
+    table button:first-of-type{
+        margin-right: 0.5rem;
     }
 
     .favoritos{
